@@ -62,7 +62,7 @@ resource "google_project_iam_member" "permissions" {
 resource "google_bigquery_data_transfer_config" "query_config" {
  depends_on = [google_project_iam_member.permissions, google_project_iam_member.bq-scheduled-query-sa-iam]
 
-  display_name           = "terraform1-query"
+  display_name           = "terraform2-query"
   location               = "US"
 #  service_account_name   = google_service_account.bq-scheduled-query-sa.email
   data_source_id         = "scheduled_query"
