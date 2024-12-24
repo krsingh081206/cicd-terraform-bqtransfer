@@ -39,12 +39,12 @@ EOF
 #}
 
 # grant bigquery admin role to the service account so that scheduled query can run
-resource "google_project_iam_member" "bq-scheduled-query-sa-iam" {
-  depends_on = [google_service_account.bq-scheduled-query-sa]
-  project    = "${var.project_id}"
-  role       = "roles/bigquery.admin"
-  member     = "serviceAccount:${google_service_account.bq-scheduled-query-sa.email}"
-}
+#resource "google_project_iam_member" "bq-scheduled-query-sa-iam" {
+#  depends_on = [google_service_account.bq-scheduled-query-sa]
+#  project    = "${var.project_id}"
+#  role       = "roles/bigquery.admin"
+#  member     = "serviceAccount:${google_service_account.bq-scheduled-query-sa.email}"
+#}
 
 
 data "google_project" "project" {
@@ -60,8 +60,8 @@ resource "google_project_iam_member" "permissions" {
 
 # create a scheduled query
 resource "google_bigquery_data_transfer_config" "query_config" {
- depends_on = [google_project_iam_member.permissions, google_project_iam_member.bq-scheduled-query-sa-iam]
-
+# depends_on = [google_project_iam_member.permissions, google_project_iam_member.bq-scheduled-query-sa-iam]
+depends_on = [google_project_iam_member.permissions]
   display_name           = "terraform2-query"
   location               = "US"
 #  service_account_name   = google_service_account.bq-scheduled-query-sa.email
