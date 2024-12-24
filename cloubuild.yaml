@@ -20,7 +20,7 @@ steps:
        cd /workspace
        pwd
        if [ ${_MODULE} = "all" ]; then
-        terraform plan -var-file=/workspace/dev.tfvars
+        terraform plan -var-file="/workspace/dev.tfvars"
        else
         terraform plan -target=module.${_MODULE}
        fi
@@ -33,7 +33,7 @@ steps:
   - |
       cd /workspace
       if [ ${_MODULE} = "all" ]; then
-       terraform apply  -var-file=/workspace/dev.tfvars -auto-approve
+       terraform apply  -var-file="/workspace/dev.tfvars" -auto-approve
       else
        terraform apply -auto-approve -target=module.${_MODULE}
       fi
